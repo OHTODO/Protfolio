@@ -10,19 +10,19 @@ class CompanyCRUDController extends Controller
         * @return \Illuminate\Http\Response
         */
         public function index()
-        {
-            $data['companies'] = Company::orderBy('id','desc')->paginate(5);
-            return view('companies.index', $data);
-        }
+            {
+                $data['companies'] = Company::orderBy('id','desc')->paginate(5);
+                return view('companies.index', $data);
+            }
         /**
         * Show the form for creating a new resource.
         *
         * @return \Illuminate\Http\Response
         */
         public function create()
-        {
-            return view('companies.create');
-        }
+            {
+                return view('companies.create');
+            }
         /**
         * Store a newly created resource in storage.
         *
@@ -30,20 +30,20 @@ class CompanyCRUDController extends Controller
         * @return \Illuminate\Http\Response
         */
         public function store(Request $request)
-        {
-            $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'address' => 'required'
-            ]);
-            $company = new Company;
-            $company->name = $request->name;
-            $company->email = $request->email;
-            $company->address = $request->address;
-            $company->save();
-            return redirect()->route('companies.index')
-            ->with('success','Company has been created successfully.');
-        }
+            {
+                $request->validate([
+                    'name' => 'required',
+                    'email' => 'required',
+                    'address' => 'required'
+                ]);
+                $company = new Company;
+                $company->name = $request->name;
+                $company->email = $request->email;
+                $company->address = $request->address;
+                $company->save();
+                return redirect()->route('companies.index')
+                ->with('success','Company has been created successfully.');
+            }
         /**
         * Display the specified resource.
         *
@@ -51,9 +51,9 @@ class CompanyCRUDController extends Controller
         * @return \Illuminate\Http\Response
         */
         public function show(Company $company)
-        {
-            return view('companies.show',compact('company'));
-        } 
+            {
+                return view('companies.show',compact('company'));
+            } 
         /**
         * Show the form for editing the specified resource.
         *
@@ -61,9 +61,9 @@ class CompanyCRUDController extends Controller
         * @return \Illuminate\Http\Response
         */
         public function edit(Company $company)
-        {
-            return view('companies.edit',compact('company'));
-        }
+            {
+                return view('companies.edit',compact('company'));
+            }
         /**
         * Update the specified resource in storage.
         *
@@ -72,20 +72,20 @@ class CompanyCRUDController extends Controller
         * @return \Illuminate\Http\Response
         */
         public function update(Request $request, $id)
-        {
-            $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'address' => 'required',
-            ]);
-            $company = Company::find($id);
-            $company->name = $request->name;
-            $company->email = $request->email;
-            $company->address = $request->address;
-            $company->save();
-            return redirect()->route('companies.index')
-            ->with('success','Company Has Been updated successfully');
-        }
+            {
+                $request->validate([
+                    'name' => 'required',
+                    'email' => 'required',
+                    'address' => 'required',
+                ]);
+                $company = Company::find($id);
+                $company->name = $request->name;
+                $company->email = $request->email;
+                $company->address = $request->address;
+                $company->save();
+                return redirect()->route('companies.index')
+                ->with('success','Company Has Been updated successfully');
+            }
         /**
         * Remove the specified resource from storage.
         *
@@ -93,9 +93,9 @@ class CompanyCRUDController extends Controller
         * @return \Illuminate\Http\Response
         */
         public function destroy(Company $company)
-        {
-            $company->delete();
-            return redirect()->route('companies.index')
-            ->with('success','Company has been deleted successfully');
-        }
+            {
+                $company->delete();
+                return redirect()->route('companies.index')
+                ->with('success','Company has been deleted successfully');
+            }
     }
